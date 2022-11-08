@@ -51,7 +51,7 @@
       bottom: 0;
       width: 100%;
       height: 1px;
-      background: var(--light);
+      background: var(--black);
       transform: scaleX(0);
       transition: all 0.3s ease;
     }

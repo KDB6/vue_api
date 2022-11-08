@@ -16,9 +16,9 @@ import ContactCont from "@/components/ContactCont.vue";
 export default {
   components: {
     HeaderCont,
+    FooterCont,
     TitleCont,
     ContactCont,
-    FooterCont,
   },
 };
 </script>
