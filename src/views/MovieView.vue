@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderCont />
-    <TitleCont name1="movie" name2="reference api" />
+    <TitleCont name1="movie" name2="reference API" />
     <section class="cont__movie">
       <div class="container">
         <div class="movie__inner">
@@ -18,13 +18,29 @@
                 modifier: 1,
                 slideShadows: true,
               }"
+              :autoplay="{
+                delay: 2500,
+                disableOnInteraction: false,
+              }"
               :pagination="true"
               :modules="modules"
               :initialSlide="3"
               class="mySwiper"
             >
-              <swiper-slide>
-                <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+              <swiper-slide v-for="slider in sliders" :key="slider.id">
+                <li>
+                  <a :href="`https://www.themoviedb.org/movie/${slider.id}`">
+                    <img
+                      :src="`https://image.tmdb.org/t/p/w500/${slider.poster_path}`"
+                      :alt="`${slider.title}`"
+                    />
+                    <em>
+                      <!-- <span className="ranking">{{ index + 1 }}</span> -->
+                      <span className="title">{{ slider.title }}</span>
+                      <span className="score">{{ slider.vote_average }}</span>
+                    </em>
+                  </a>
+                </li>
               </swiper-slide>
             </swiper>
           </div>
@@ -77,7 +93,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import { EffectCoverflow, Pagination } from "swiper";
+import { EffectCoverflow, Pagination, Autoplay } from "swiper";
 
 export default {
   components: {
@@ -120,7 +136,7 @@ export default {
       search,
       SearchMovies,
       TopMovies,
-      modules: [EffectCoverflow, Pagination],
+      modules: [EffectCoverflow, Pagination, Autoplay],
     };
   },
 };
@@ -181,26 +197,25 @@ export default {
     font-family: var(--font-kor);
   }
   input {
-    background: #ccc;
-    border: 2px solid var(--dark);
+    background: #fff;
+    border: 1px solid #000;
     border-radius: 50px;
-    color: var(--white);
     width: 100%;
     padding: 14px 20px;
     font-family: var(--font-kor);
   }
   button {
     position: absolute;
-    right: 10px;
-    top: 5px;
+    right: 15px;
+    top: 8px;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     border: 0;
     font-family: var(--font-kor);
     font-weight: 400;
     cursor: pointer;
     z-index: 1000;
+    background: #fff;
   }
 }
 
@@ -239,7 +254,7 @@ html,
 }
 
 .movie__slider {
-  background: #eee;
+  background: #fff;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #000;
@@ -247,10 +262,33 @@ html,
   padding: 0;
 }
 
+em {
+  display: block;
+  font-family: var(--font-main);
+}
+.score {
+  font-weight: 800;
+  border-bottom: 1px solid #000;
+  color: #000;
+  right: 0px;
+  width: 30px;
+  top: -30px;
+  position: absolute;
+  height: 23px;
+  text-align: center;
+}
+.title {
+  padding: 5px 0;
+  display: inline-block;
+  color: #000;
+  font-size: 16px;
+  font-family: var(--font-kor);
+}
+
 .swiper {
   width: 100%;
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 230px;
 }
 
 .swiper-slide {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderCont />
-    <TitleCont name1="Unsplash" name2="Reference" />
+    <TitleCont name1="Unsplash" name2="Reference API" />
 
     <section className="cont__refer">
       <div className="container">
