@@ -12,7 +12,7 @@
               :centeredSlides="true"
               :slidesPerView="'auto'"
               :coverflowEffect="{
-                rotate: 50,
+                rotate: 40,
                 stretch: 0,
                 depth: 100,
                 modifier: 1,
@@ -237,8 +237,63 @@ export default {
     font-family: var(--font-kor);
     font-weight: 400;
   }
-
   img {
     margin-bottom: 30px;
   }
 }
+
+#app {
+  height: 100%;
+}
+html,
+.movie__slider {
+  position: relative;
+  height: 100%;
+}
+
+.movie__slider {
+  background: #fff;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 230px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.score {
+  font-weight: 800;
+  border-bottom: 1px solid #000;
+  color: #000;
+  right: 0px;
+  width: 30px;
+  top: -30px;
+  position: absolute;
+  height: 23px;
+  text-align: center;
+}
+.title {
+  padding: 5px 0;
+  display: inline-block;
+  color: #000;
+  font-size: 16px;
+  font-family: var(--font-kor);
+}
+</style>
