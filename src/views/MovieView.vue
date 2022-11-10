@@ -35,7 +35,6 @@
                       :alt="`${slider.title}`"
                     />
                     <em>
-                      <!-- <span className="ranking">{{ index + 1 }}</span> -->
                       <span className="title">{{ slider.title }}</span>
                       <span className="score">{{ slider.vote_average }}</span>
                     </em>
