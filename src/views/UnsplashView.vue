@@ -1,76 +1,76 @@
 <template>
-  <div>
-    <HeaderCont />
-    <TitleCont name1="Unsplash" name2="Reference API" />
+	<div>
+		<HeaderCont />
+		<TitleCont name1="Unsplash" name2="Reference API" />
 
-    <section className="cont__refer">
-      <div className="container">
-        <div className="unsplash__inner">
-          <div class="unsplash__slider"></div>
-          <div class="unsplash__search"></div>
-          <div class="unsplash__images">
-            <ul>
-              <li v-for="splash in splashes" :key="splash.id">
-                <a href="#">
-                  <img :src="splash.urls.regular" :alt="splash.id" />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+		<section className="cont__refer">
+			<div className="container">
+				<div className="unsplash__inner">
+					<div class="unsplash__slider"></div>
+					<div class="unsplash__search"></div>
+					<div class="unsplash__images">
+						<ul>
+							<li v-for="splash in splashes" :key="splash.id">
+								<a href="#">
+									<img :src="splash.urls.regular" :alt="splash.id" />
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <ContactCont />
-    <FooterCont />
-  </div>
+		<ContactCont />
+		<FooterCont />
+	</div>
 </template>
 
 <script>
-import HeaderCont from "@/components/HeaderCont.vue";
-import FooterCont from "@/components/FooterCont.vue";
-import TitleCont from "@/components/TitleCont.vue";
-import ContactCont from "@/components/ContactCont.vue";
-import { ref } from "vue";
+import HeaderCont from '@/components/HeaderCont.vue';
+import FooterCont from '@/components/FooterCont.vue';
+import TitleCont from '@/components/TitleCont.vue';
+import ContactCont from '@/components/ContactCont.vue';
+import { ref } from 'vue';
 
 export default {
-  components: {
-    HeaderCont,
-    FooterCont,
-    TitleCont,
-    ContactCont,
-  },
+	components: {
+		HeaderCont,
+		FooterCont,
+		TitleCont,
+		ContactCont,
+	},
 
-  setup() {
-    const splashes = ref([]);
-    const search = ref("landscape");
+	setup() {
+		const splashes = ref([]);
+		const search = ref('landscape');
 
-    // const SearchSplashes = (search) => {
-    //   fetch(
-    //     `https://api.unsplash.com/search/photos?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}`
-    //   )
-    //     .then((response) => response.json())
-    //     .then((result) => console.log(result))
-    //     .catch((error) => console.log(error));
-    // };
-    // SearchSplashes();
+		// const SearchSplashes = (search) => {
+		//   fetch(
+		//     `https://api.unsplash.com/search/photos?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}`
+		//   )
+		//     .then((response) => response.json())
+		//     .then((result) => console.log(result))
+		//     .catch((error) => console.log(error));
+		// };
+		// SearchSplashes();
 
-    const RandomSplashes = () => {
-      fetch(
-        "https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg=20"
-      )
-        .then((response) => response.json())
-        .then((result) => splashes.value(result))
-        .catch((error) => console.log(error));
-    };
-    RandomSplashes();
+		const RandomSplashes = () => {
+			fetch(
+				'https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg=20',
+			)
+				.then(response => response.json())
+				.then(result => splashes.value(result))
+				.catch(error => console.log(error));
+		};
+		RandomSplashes();
 
-    return {
-      splashes,
-      search,
-      // SearchSplashes,
-      RandomSplashes,
-    };
-  },
+		return {
+			splashes,
+			search,
+			// SearchSplashes,
+			RandomSplashes,
+		};
+	},
 };
 </script>
