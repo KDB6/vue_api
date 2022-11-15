@@ -31,10 +31,6 @@
 											:src="`https://unsplash.com/photos/${splash.urls.regular}`"
 											:alt="`${splash.title}`"
 										/>
-										<em>
-											<span className="title">{{ slider.title }}</span>
-											<span className="score">{{ slider.vote_average }}</span>
-										</em>
 									</a>
 								</li>
 							</swiper-slide>
@@ -83,24 +79,43 @@ export default {
 
 	setup() {
 		const splashes = ref([]);
+		const sliders = ref([]);
 		const search = ref('landscape');
 
 		// const SearchSplashes = (search) => {
 		//   fetch(
-		//     `https://api.unsplash.com/search/photos?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}`
+		//     `https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}=color&count=30`
 		//   )
-		//     .then((response) => response.json())
-		//     .then((result) => console.log(result))
-		//     .catch((error) => console.log(error));
+		//   	.then(response => response.json())
+		// 	.then(result => {
+		// 		console.log(result);
+		// 		splashes.value = result.results;
+		// 		search.value = '';
+		// 	})
+		// 	.catch(error => console.log(error));
 		// };
 		// SearchSplashes();
 
-		const RandomSplashes = () => {
-			fetch(
-				'https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg=20',
+		const SearchSplashes = async () => {
+			await fetch(
+				`https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}=color&count=30`,
 			)
 				.then(response => response.json())
-				.then(result => splashes.value(result))
+				.then(result => {
+					console.log(result);
+					splashes.value = result.results;
+					search.value = '';
+				})
+				.catch(error => console.log(error));
+		};
+		SearchSplashes();
+
+		const RandomSplashes = () => {
+			fetch(
+				'https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=color&count=30',
+			)
+				.then(response => response.json())
+				.then(result => sliders.value(result.results))
 				.catch(error => console.log(error));
 		};
 		RandomSplashes();
