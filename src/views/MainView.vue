@@ -6,15 +6,6 @@
 				<div v-for="title in titles" v-bind:key="title.text">
 					{{ title.text }}
 				</div>
-				<div v-for="title in titles" v-bind:key="title.text">
-					{{ title.text }}
-				</div>
-				<div v-for="title in titles" v-bind:key="title.text">
-					{{ title.text }}
-				</div>
-				<div v-for="title in titles" v-bind:key="title.text">
-					{{ title.text }}
-				</div>
 			</div>
 		</section>
 		<FooterCont />
@@ -50,7 +41,7 @@ export default {
 	align-items: flex-start;
 	flex-direction: column;
 	height: 100vh;
-	color: var(--white);
+	color: var(--dark);
 
 	> div {
 		font-size: 9.4vw;
