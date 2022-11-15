@@ -3,11 +3,11 @@
 		<div className="footer__inner">
 			<div>
 				<h3>email</h3>
-				<a href="mailto:ipkg7210@gmail.com">a</a>
+				<a href="mailto:ipkg7210@gmail.com">ipkg7210@gmail.com</a>
 			</div>
 			<div>
 				<h3>email</h3>
-				<a href="/">a</a>
+				<a href="/">email</a>
 			</div>
 			<div>
 				<h3>a</h3>
@@ -27,7 +27,7 @@
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	color: var(--white);
+	color: var(--dark);
 	background-color: var(--bg-dark);
 	border-top: 1px solid var(--bg-dark-border);
 	z-index: 1000px;
@@ -64,7 +64,7 @@
 	a {
 		display: inline-block;
 		margin: 23px;
-		color: var(--white);
+		color: var(--dark);
 		opacity: 0.6;
 		position: relative;
 		transition: opacity 0.3s;
