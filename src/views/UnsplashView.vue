@@ -24,24 +24,38 @@
 							}"
 							class="mySwiper"
 						>
-							<swiper-slide v-for="splash in sliders" :key="splash.id">
+							<swiper-slide v-for="slider in sliders" :key="slider.id">
 								<li>
-									<a :href="`https://unsplash.com/photos/${splash.id}`">
+									<a :href="`https://unsplash.com/photos/${slider.id}`">
 										<img
-											:src="`https://unsplash.com/photos/${splash.urls.regular}`"
-											:alt="`${splash.title}`"
+											:src="slider.urls.regular"
+											:alt="slider.urls.alt_description"
 										/>
 									</a>
 								</li>
 							</swiper-slide>
 						</swiper>
 					</div>
-					<div class="unsplash__search"></div>
+					<div class="unsplash__search">
+						<div className="container">
+							<h2>검색하기</h2>
+							<input
+								type="search"
+								id="search"
+								placeholder="원하시는 이미지를 검색해주세요!"
+								v-model="search"
+							/>
+							<button type="submit">검색</button>
+						</div>
+					</div>
 					<div class="unsplash__images">
 						<ul>
 							<li v-for="splash in splashes" :key="splash.id">
-								<a href="#">
-									<img :src="splash.urls.regular" :alt="splash.id" />
+								<a :href="`https://unsplash.com/photos/${splash.id}`">
+									<img
+										:src="splash.urls.regular"
+										:alt="splash.urls.alt_description"
+									/>
 								</a>
 							</li>
 						</ul>
@@ -78,23 +92,9 @@ export default {
 	},
 
 	setup() {
-		const splashes = ref([]);
 		const sliders = ref([]);
+		const splashes = ref([]);
 		const search = ref('landscape');
-
-		// const SearchSplashes = (search) => {
-		//   fetch(
-		//     `https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}=color&count=30`
-		//   )
-		//   	.then(response => response.json())
-		// 	.then(result => {
-		// 		console.log(result);
-		// 		splashes.value = result.results;
-		// 		search.value = '';
-		// 	})
-		// 	.catch(error => console.log(error));
-		// };
-		// SearchSplashes();
 
 		const SearchSplashes = async () => {
 			await fetch(
@@ -121,9 +121,10 @@ export default {
 		RandomSplashes();
 
 		return {
+			sliders,
 			splashes,
 			search,
-			// SearchSplashes,
+			SearchSplashes,
 			RandomSplashes,
 			modules: [Pagination, Autoplay],
 		};
@@ -164,8 +165,8 @@ export default {
 		font-family: var(--font-kor);
 	}
 	input {
-		background: #000;
-		border: 1px solid var(--white);
+		background: #fff;
+		border: 1px solid var(--bg--dark-border);
 		border-radius: 50px;
 		color: var(--white);
 		width: 100%;
@@ -183,8 +184,8 @@ export default {
 		font-family: var(--font-kor);
 		font-weight: 400;
 		z-index: 1000;
-		background: #000;
-		color: var(--white);
+		background: #fff;
+		color: var(--dark);
 		cursor: pointer;
 	}
 }

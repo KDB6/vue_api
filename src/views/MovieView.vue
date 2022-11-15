@@ -62,7 +62,7 @@
 							<div class="movie__list">
 								<ul>
 									<li v-for="movie in movies" :key="movie.id">
-										<a :href="`https://image.tmdb.org/movie/${movie.id}`">
+										<a :href="`https://www.themoviedb.org/movie/${movie.id}`">
 											<img
 												:src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
 												:alt="movie.title"
