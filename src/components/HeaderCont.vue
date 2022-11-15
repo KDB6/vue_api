@@ -9,7 +9,7 @@
 			</ul>
 		</div>
 		<h1 class="header__center">
-			<router-link to="/main">API SITE</router-link>
+			<router-link to="/">API SITE</router-link>
 		</h1>
 		<div class="header__right">
 			<ul>
