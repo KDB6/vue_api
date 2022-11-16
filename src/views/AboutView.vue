@@ -11,7 +11,6 @@
 					for the Front-End.
 				</p>
 			</div>
-			<img src="../assets/img/my.png" alt="" />
 			<div className="desc__sub">
 				<h2>YOUTUBE API</h2>
 				<p>
@@ -80,7 +79,7 @@ export default {
 
 <style lang="scss">
 .cont__about {
-	color: var(--white);
+	color: var(--dark);
 	font-family: var(--font-main);
 	margin-bottom: 800px;
 
