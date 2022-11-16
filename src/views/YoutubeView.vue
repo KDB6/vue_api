@@ -8,7 +8,6 @@
 				<div className="youtube__inner">
 					<div class="youtube__slider">
 						<swiper
-							:slidesPerView="3"
 							:spaceBetween="30"
 							:pagination="{
 								clickable: true,
@@ -41,19 +40,21 @@
 					<div class="youtube__search">
 						<div className="container">
 							<h2>검색하기</h2>
-							<input
-								type="search"
-								id="search"
-								placeholder="원하시는 영상을 검색해주세요!"
-								v-model="search"
-							/>
-							<button type="submit">검색</button>
+							<form @submit.prevent="SearchSplashes()">
+								<input
+									type="search"
+									id="search"
+									placeholder="원하시는 영상을 검색해주세요!"
+									v-model="search"
+								/>
+								<button type="submit">검색</button>
+							</form>
 						</div>
 					</div>
 					<div class="youtube__images">
 						<ul>
 							<li v-for="youtube in youtubes" :key="youtube.id">
-								<a :href="`https://unsplash.com/photos/${youtube.id}`">
+								<a :href="`https://www.youtube.com/watch?v=${youtube.id}`">
 									<img
 										:src="youtube.snippet.thumbnails.medium.url"
 										:alt="youtube.snippet.description"
@@ -98,7 +99,7 @@ export default {
 		const youtubes = ref([]);
 		const search = ref('landscape');
 
-		const SearchYoutubes = async () => {
+		const SearchYoutubes = async e => {
 			await fetch(
 				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=킹타쿠&key=AIzaSyABuOUy0Teh_pPVBd6DOP0sB1mj7EnYhs0&query=${search.value}&maxResults=30&type=video`,
 			)
@@ -107,6 +108,7 @@ export default {
 					console.log(result);
 					youtubes.value = result.results;
 					search.value = '';
+					search.value = e;
 				})
 				.catch(error => console.log(error));
 		};
@@ -118,7 +120,7 @@ export default {
 			)
 				.then(response => response.json())
 				.then(result => sliders.value(result.results))
-				.catch(error => console.log(error));
+				.catch(error => console.log('error', error));
 		};
 		RandomYoutubes();
 

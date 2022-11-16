@@ -3,52 +3,53 @@
 		<HeaderCont />
 		<TitleCont name1="Unsplash" name2="Reference API" />
 
-		<section className="cont__unsplash">
-			<div className="container">
-				<div className="unsplash__inner">
-					<div class="unsplash__slider">
-						<swiper
-							:slidesPerView="'auto'"
-							:centeredSlides="true"
-							:spaceBetween="30"
-							:pagination="{
-								clickable: true,
-							}"
-							:modules="{
-								Pagination,
-								Autoplay,
-							}"
-							:autoplay="{
-								delay: 2500,
-								disableOnInteraction: false,
-							}"
-							class="mySwiper"
-						>
-							<swiper-slide v-for="slider in sliders" :key="slider.id">
-								<li>
-									<a :href="`https://unsplash.com/photos/${slider.id}`">
-										<img
-											:src="slider.urls.regular"
-											:alt="slider.urls.alt_description"
-										/>
-									</a>
-								</li>
-							</swiper-slide>
-						</swiper>
-					</div>
-					<div class="unsplash__search">
-						<div className="container">
-							<h2>검색하기</h2>
-							<input
-								type="search"
-								id="search"
-								placeholder="원하시는 이미지를 검색해주세요!"
-								v-model="search"
-							/>
-							<button type="submit">검색</button>
-						</div>
-					</div>
-					<div class="unsplash__images">
+		<section id="cont__unsplash">
+			<div class="container">
+				<div class="unsplash__inner">
+					<swiper
+						:slidesPerView="'auto'"
+						:centeredSlides="true"
+						:spaceBetween="30"
+						:pagination="{
+							clickable: true,
+						}"
+						:modules="modules"
+						:autoplay="{
+							delay: 2500,
+							disableOnInteraction: false,
+						}"
+						class="mySwiper"
+					>
+						<swiper-slide v-for="slider in sliders" :key="slider.id">
+							<li>
+								<a :href="`https://yunsplash.com/photos/${slider.id}`">
+									<img
+										:src="slider.urls.regular"
+										:alt="slider.urls.alt_description"
+									/>
+								</a>
+							</li>
+						</swiper-slide>
+					</swiper>
+				</div>
+			</div>
+			<div class="unsplash__search">
+				<div class="container">
+					<h2>검색하기</h2>
+					<form @submit.prevent="SearchSplashes()">
+						<input
+							type="search"
+							id="search"
+							placeholder="원하시는 이미지를 검색해주세요!"
+							v-model="search"
+						/>
+						<button type="submit">검색</button>
+					</form>
+				</div>
+			</div>
+			<div class="cont__unsplash">
+				<div class="container">
+					<div class="unsplash__inner">
 						<ul>
 							<li v-for="splash in splashes" :key="splash.id">
 								<a :href="`https://unsplash.com/photos/${splash.id}`">
@@ -96,15 +97,16 @@ export default {
 		const splashes = ref([]);
 		const search = ref('landscape');
 
-		const SearchSplashes = async () => {
+		const SearchSplashes = async e => {
 			await fetch(
-				`https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}=color&count=30`,
+				`https://api.unsplash.com/search/photos?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}=color&count=10`,
 			)
 				.then(response => response.json())
 				.then(result => {
 					console.log(result);
 					splashes.value = result.results;
 					search.value = '';
+					search.value = e;
 				})
 				.catch(error => console.log(error));
 		};
@@ -115,8 +117,8 @@ export default {
 				'https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=color&count=30',
 			)
 				.then(response => response.json())
-				.then(result => sliders.value(result.results))
-				.catch(error => console.log(error));
+				.then(result => (sliders.value = result))
+				.catch(error => console.log('error', error));
 		};
 		RandomSplashes();
 
@@ -168,7 +170,7 @@ export default {
 		background: #fff;
 		border: 1px solid var(--bg--dark-border);
 		border-radius: 50px;
-		color: var(--white);
+		color: var(--dark);
 		width: 100%;
 		padding: 14px 20px;
 		font-family: var(--font-kor);
@@ -212,7 +214,8 @@ export default {
 
 	.swiper {
 		width: 100%;
-		height: 100%;
+		height: 500px;
+		padding-bottom: -150px;
 	}
 
 	.swiper-slide {
@@ -243,6 +246,7 @@ export default {
 
 	.swiper-slide {
 		width: 100%;
+		height: 500px;
 	}
 }
 

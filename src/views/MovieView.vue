@@ -35,8 +35,8 @@
 											:alt="`${slider.title}`"
 										/>
 										<em>
-											<span className="title">{{ slider.title }}</span>
-											<span className="score">{{ slider.vote_average }}</span>
+											<span class="title">{{ slider.title }}</span>
+											<span class="score">{{ slider.vote_average }}</span>
 										</em>
 									</a>
 								</li>
