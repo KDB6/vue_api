@@ -26,7 +26,7 @@
 							<swiper-slide v-for="slider in sliders" :key="slider.id">
 								<li>
 									<a
-										:href="`https://www.youtube.com/watch?v=${slider.id.videoId}`"
+										:href="`https://youtube.googleapis.com/youtube/${slider.id.videoId}`"
 									>
 										<img
 											:src="`${slider.snippet.thumbnails.medium.url}`"
@@ -54,7 +54,9 @@
 					<div class="youtube__images">
 						<ul>
 							<li v-for="youtube in youtubes" :key="youtube.id">
-								<a :href="`https://www.youtube.com/watch?v=${youtube.id}`">
+								<a
+									:href="`https://youtube.googleapis.com/youtube/${youtube.id}`"
+								>
 									<img
 										:src="youtube.snippet.thumbnails.medium.url"
 										:alt="youtube.snippet.description"
@@ -101,12 +103,12 @@ export default {
 
 		const SearchYoutubes = async e => {
 			await fetch(
-				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=킹타쿠&key=AIzaSyABuOUy0Teh_pPVBd6DOP0sB1mj7EnYhs0&query=${search.value}&maxResults=30&type=video`,
+				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=킹타쿠&key=AIzaSyABuOUy0Teh_pPVBd6DOP0sB1mj7EnYhs0&query=${search.value}&maxResults=30`,
 			)
 				.then(response => response.json())
 				.then(result => {
 					console.log(result);
-					youtubes.value = result.results;
+					youtubes.value = result.items;
 					search.value = '';
 					search.value = e;
 				})
@@ -119,7 +121,7 @@ export default {
 				'https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=킹타쿠&key=AIzaSyABuOUy0Teh_pPVBd6DOP0sB1mj7EnYhs0&maxResults=30&type=video',
 			)
 				.then(response => response.json())
-				.then(result => sliders.value(result.results))
+				.then(result => sliders.value(result.items.id))
 				.catch(error => console.log('error', error));
 		};
 		RandomYoutubes();

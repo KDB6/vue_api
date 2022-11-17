@@ -99,7 +99,7 @@ export default {
 
 		const SearchSplashes = async e => {
 			await fetch(
-				`https://api.unsplash.com/search/photos?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}=color&count=10`,
+				`https://api.unsplash.com/search/photos?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=${search.value}=color&count=30`,
 			)
 				.then(response => response.json())
 				.then(result => {
@@ -114,7 +114,7 @@ export default {
 
 		const RandomSplashes = () => {
 			fetch(
-				'https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=color&count=30',
+				'https://api.unsplash.com/photos/random?client_id=AhDbLOTnwHGYmo4we_vDUhkIf2MTG3fS9HwGmK1slMg&query=color&count=10',
 			)
 				.then(response => response.json())
 				.then(result => (sliders.value = result))

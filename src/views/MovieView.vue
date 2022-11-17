@@ -122,7 +122,7 @@ export default {
 		SearchMovies();
 		const TopMovies = async () => {
 			await fetch(
-				`https://api.themoviedb.org/3/movie/popular?api_key=bac86c38508d81c3aa391db7e3be94b1`,
+				`https://api.themoviedb.org/3/movie/popular?api_key=bac86c38508d81c3aa391db7e3be94b1&count=10`,
 			)
 				.then(response => response.json())
 				.then(result => (sliders.value = result.results))
